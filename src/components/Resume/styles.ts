@@ -8,6 +8,7 @@ export const Container = styled.div`
   gap: 20px;
   margin-top: -50px;
   justify-content: space-around;
+
 `;
 
 export const Content = styled.div`
@@ -15,9 +16,11 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  border-radius: 5px;
-  padding: 5px 15px;
+  border-radius: 10px;
+  padding: 5px 15px 2rem;
   width: 30%;
+  box-shadow: 0px 0px 20px 0px #00000069;
+
   @media (max-width: 750px) {
     width: 20%;
     p {
