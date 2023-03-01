@@ -3,6 +3,7 @@ import GlobalStyle from "./styles/global";
 import Header from "./components/Header";
 import Resume from "./components/Resume";
 import Form from "./components/Form";
+import { itensProp } from "./models";
 
 
 const App = () => {
@@ -10,23 +11,23 @@ const App = () => {
   const [transactionsList, setTransactionsList] = useState(
     data ? JSON.parse(data) : []
   );
-  const [income, setIncome] = useState(0);
-  const [expense, setExpense] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [income, setIncome] = useState("");
+  const [expense, setExpense] = useState("");
+  const [total, setTotal] = useState("");
 
   useEffect(() => {
     const amountExpense = transactionsList
-      .filter((item) => item.expense)
-      .map((transaction) => Number(transaction.amount));
+      .filter((item: { expense: boolean; }) => item.expense)
+      .map((transaction: { amount: string; }) => Number(transaction.amount));
 
     const amountIncome = transactionsList
-      .filter((item) => !item.expense)
-      .map((transaction) => Number(transaction.amount));
-      
+      .filter((item: { expense: boolean; }) => !item.expense)
+      .map((transaction: { amount: string; }) => Number(transaction.amount));
+
     //Entrada
-    const income = amountIncome.reduce((acc, cur) => acc + cur, 0).toFixed(2);
+    const income = amountIncome.reduce((acc: any, cur: any) => acc + cur, 0).toFixed(2);
     //Saida
-    const expense = amountExpense.reduce((acc, cur) => acc + cur, 0).toFixed(2);
+    const expense = amountExpense.reduce((acc: any, cur: any) => acc + cur, 0).toFixed(2);
     //Total
     const total = Math.abs(income - expense).toFixed(2);
 
@@ -35,7 +36,7 @@ const App = () => {
     setTotal(`${Number(income) < Number(expense) ? "-" : ""}R$ ${total}`);
   }, [transactionsList]);
 
-  const handleAdd = (transaction) => {
+  const handleAdd = (transaction: itensProp) => {
     const newArrayTransactions = [...transactionsList, transaction];
 
     setTransactionsList(newArrayTransactions);

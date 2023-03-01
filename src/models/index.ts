@@ -1,6 +1,12 @@
 import { IconType } from "react-icons/lib";
 
 
+export type propers = {
+    handleAdd: Function,
+    transactionsList: itensProp[],
+    setTransactionsList: Function
+}
+
 ///////////// - Grid - ///////////// 
 export type itensProp = {
     desc: string,
@@ -8,8 +14,6 @@ export type itensProp = {
     expense: Boolean,
     id: number,
 }
-
-
 
 export type prop = {
     itens: itensProp[];
@@ -19,9 +23,9 @@ export type prop = {
 ///////////// - Resume - ///////////// 
 
 export type status = {
-    income: number,
-    expense: number,
-    total: number
+    income: string,
+    expense: string,
+    total: string
 }
 
 export type resumes = {
@@ -29,3 +33,5 @@ export type resumes = {
     Icon: IconType,
     value: any
 }
+
+
