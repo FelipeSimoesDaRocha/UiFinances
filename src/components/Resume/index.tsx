@@ -29,8 +29,8 @@ const Resume = ({ income, expense, total }: status) => {
 
   return (
     <C.Container>
-      {ResumeItem.map(props => (
-        <C.Content>
+      {ResumeItem.map((props,index:number) => (
+        <C.Content key={index}>
           <C.Header>
             <C.HeaderTitle>{props.title}</C.HeaderTitle>
             {<props.Icon />}

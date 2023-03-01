@@ -1,26 +1,19 @@
 import React from "react";
 import * as C from "./styles";
+import { itensProp, prop } from "../../models";
+
 import {
   FaRegArrowAltCircleUp,
   FaRegArrowAltCircleDown,
   FaTrash,
 } from "react-icons/fa";
 
-const Grid = ({ itens, setItens }) => {
-
-  // type item = {
-  //   desc: string;
-  //   amount: number;
-  //   expense: any;
-  //   id: number;
-  // }
-
-  const onDelete = (ID) => {
-    const newArray = itens.filter((transaction) => transaction.id !== ID);
+const Grid = ({ itens, setItens }: prop) => {
+  const onDelete = (id: number) => {
+    const newArray = itens.filter((transaction) => transaction.id !== id);
     setItens(newArray);
     localStorage.setItem("transactions", JSON.stringify(newArray));
   };
-
 
   return (
     <C.Table>
@@ -33,19 +26,19 @@ const Grid = ({ itens, setItens }) => {
         </C.Tr>
       </C.Thead>
       <C.Tbody>
-        {itens?.map((item, index) => (
-          <C.Tr key={index} item={item}>
-            <C.Td>{item.desc}</C.Td>
-            <C.Td>{item.amount}</C.Td>
+        {itens.map((prop: itensProp, index: number) => (
+          <C.Tr key={index}>
+            <C.Td>{prop.desc}</C.Td>
+            <C.Td>{prop.amount}</C.Td>
             <C.Td >
-              {item.expense ? (
+              {prop.expense ? (
                 <FaRegArrowAltCircleDown color="red" />
               ) : (
                 <FaRegArrowAltCircleUp color="green" />
               )}
             </C.Td>
             <C.Td >
-              <FaTrash onClick={() => onDelete(item.id)} />
+              <FaTrash onClick={() => onDelete(prop.id)} />
             </C.Td>
           </C.Tr>
         ))}
